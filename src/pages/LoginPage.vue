@@ -10,20 +10,20 @@
       <div class="row items-center">
         <!-- LEFT SIDE -->
         <div class="col-12 col-md-6">
-          <div class="as row text-center items-center justify-center ">
-            <div class="as col-4">
-              <q-toolbar-title class="bg-white text-pink text-h3 " style="font-family: 'Lobster', cursive">
+          <div class="row text-center items-center justify-center ">
+            <div class="col-4">
+              <q-toolbar-title class=" text-pink text-h3 " style="font-family: 'Lobster', cursive">
                 Letz Fit
               </q-toolbar-title>
             </div>
-            <div class="as col-12">
+            <div class="col-12">
               <div class="row justify-center">
                 <div class="col-7">
                   <q-img
                     fit="fill"
                     placeholder-src="https://img.freepik.com/free-photo/big-dumbbells-white_144627-24203.jpg?size=626&ext=jpg"
                     src="https://img.freepik.com/free-photo/big-dumbbells-white_144627-24203.jpg?size=626&ext=jpg"
-                    spinner-color="white">
+                    spinner-color="red">
                   </q-img>
                 </div>
               </div>
@@ -32,51 +32,71 @@
           </div>
         </div>
         <!-- RIGHT SIDE -->
-        <div class="as col-12 col-md-3 col-lg-3">
+        <div class="col-12 col-md-5 col-lg-5">
           <q-form
-            @submit="onSubmit"
-            @reset="onReset"
+            @submit="login"
             class="q-gutter-md"
           >
             <q-input
               color="purple-9"
-              v-model="benutzername"
-              label="Benutzername"
+              v-model="username"
+              :label="$t('email')"
             />
             <q-input
               :type="visible ? 'text' : 'password'"
-              color="purple-9"
-              v-model="passwort"
-              label="Passwort"
+              color="indigo"
+              v-model="password"
+              :label="$t('password')"
+              :clearable="true"
             />
             <q-toggle
-              label="See password"
+              :label="$t('password_visibility')"
               v-model="visible"
             />
-            <q-btn @click.stop.prevent="click" type="submit" style="background: #ff0080; color: white" label="Login"/>
+            <q-btn
+
+              type="submit" color="indigo" :label="$t('login')" :loading="loading"/>
           </q-form>
         </div>
       </div>
     </div>
   </div>
+
 </template>
 <script setup lang="ts">
-import {onMounted, ref} from 'vue';
-import axios from "axios";
+import {ref} from 'vue';
+import {UserCredential} from 'src/models';
+import {useRouter} from 'vue-router';
+import authService from 'src/service/AuthService';
+import {useAppStore} from 'stores/app-store';
 
-
-const benutzername = ref('');
-const passwort = ref('');
+const username = ref('');
+const password = ref('');
 const visible = ref(false);
+const loading = ref(false);
+const router = useRouter();
+useAppStore();
+function login() {
+  loading.value = true;
+  //TODO https://www.thedutchlab.com/insights/using-axios-interceptors-for-refreshing-your-api-token
+  const user: UserCredential = {email: username.value, password: password.value}
+  authService.login(user)
+    .then(res => {
+        console.log(res)
+        router.push('/home')
+      }
+    )
+    .catch((e) => {
+      console.log(e.response)
+      console.log(e.config);
+    })
+    .finally(() => {
+      loading.value = false;
+    })
+}
 
-onMounted(async () => {
-  const res = await axios.get('http://localhost:8000/api/test');
-})
 </script>
 <style lang="scss">
-p {
-  background-color: #000000;
-}
 
 /*.as{
   border-style: dotted;
