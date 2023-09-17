@@ -4,9 +4,9 @@
 export default {
   failed: 'Action failed',
   success: 'Action was successful',
-  username: 'Username',
-  password: 'Password',
+  username: 'Benutzername',
+  password: 'Passwort',
   email: 'Email',
-  login: 'Login',
-  password_visibility: 'See Password'
+  login: 'Anmelden',
+  password_visibility: 'Passwort einblenden'
 };
