@@ -15,7 +15,8 @@
 </template>
 
 <script setup lang="ts">
-import { Todo, Meta } from 'components/models';
+import { Todo, Meta } from 'src/models/index'
+
 import ExampleComponent from 'components/ExampleComponent.vue';
 import { ref } from 'vue';
 

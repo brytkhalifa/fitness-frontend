@@ -9,13 +9,15 @@
     <p>Count: {{ todoCount }} / {{ meta.totalCount }}</p>
     <p>Active: {{ active ? 'yes' : 'no' }}</p>
     <p>Clicks on todos: {{ clickCount }}</p>
+    <home-page></home-page>
   </div>
 </template>
 
 <script setup lang="ts">
+import {useCounterStore} from 'src/stores/example-store';
+import { Todo, Meta } from 'src/models';
 import { computed, ref } from 'vue';
-import {useCounterStore} from 'stores/example-store';
-import { Todo, Meta } from './models';
+import HomePage from 'src/pages/HomePage.vue';
 const store = useCounterStore();
 interface Props {
   title: string;
