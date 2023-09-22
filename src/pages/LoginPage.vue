@@ -4,6 +4,7 @@
       <h3 style="color: pink">Letz Fit</h3>
     </div>
   </div>-->
+
   <div class="row justify-center items-center">
     <div class="col-10 col-md-8 q-mt-xl ">
       <!-- full form-->
@@ -13,16 +14,18 @@
           <div class="row text-center items-center justify-center ">
             <div class="col-4">
               <q-toolbar-title class=" text-pink text-h3 " style="font-family: 'Lobster', cursive">
-                Letz Fit
+                LetzFit
               </q-toolbar-title>
             </div>
             <div class="col-12">
               <div class="row justify-center">
                 <div class="col-7">
+                  <!-- free png image link https://www.pngegg.com/en/search?q=GYM -->
                   <q-img
                     fit="fill"
-                    placeholder-src="https://img.freepik.com/free-photo/big-dumbbells-white_144627-24203.jpg?size=626&ext=jpg"
-                    src="https://img.freepik.com/free-photo/big-dumbbells-white_144627-24203.jpg?size=626&ext=jpg"
+                    placeholder-src="src/assets/body_builder.png"
+                    src="src/assets/body_builder.png"
+                    alt="Image"
                     spinner-color="red">
                   </q-img>
                 </div>
